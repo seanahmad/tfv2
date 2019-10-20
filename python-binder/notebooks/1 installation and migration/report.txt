@@ -14,4 +14,3 @@ Processing file 'tensorflow1.py'
 
 6:5: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
 --------------------------------------------------------------------------------
-
