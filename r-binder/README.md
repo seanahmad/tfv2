@@ -13,7 +13,6 @@ In this regard, this article provides an overview of:
 - Feature selection methods in R
 - How to define a Sequential model in Keras
 - Methods to validate and test model predictions
-- Advantages and disadvantages of running Keras using the R interface
 
 ## Datasets
 
