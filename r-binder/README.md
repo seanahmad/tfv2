@@ -20,7 +20,7 @@ The Pima Indians Diabetes dataset is partitioned into three separate datasets fo
 
 **Training and validation:** *pima-indians-diabetes1.csv*. 80% of the original dataset is split from the full dataset. In turn, 70% of this dataset is used for training the model, and the remaining 30% is used for validating the predictions.
 
-**Test:** *pima-indians-diabetes2.csv* and *pima-indians-diabetes3.csv*. The remaining 20% of the original dataset is used as unseen data, to determine whether the predictions being yielded by the model would perform well when dealing with completely new data. pima-indians-diabetes2 contains the features (or independent variables), while pima-indians-diabetes3 contains the dependent variable (blood glucose levels).
+**Test:** *pima-indians-diabetes2.csv* and *pima-indians-diabetes3.csv*. The remaining 20% of the original dataset is used as unseen data, to determine whether the predictions being yielded by the model would perform well when dealing with completely new data. *pima-indians-diabetes2* contains the features (or independent variables), while *pima-indians-diabetes3* contains the dependent variable (blood glucose levels).
 
 ## Feature Selection
 
