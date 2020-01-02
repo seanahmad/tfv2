@@ -102,7 +102,56 @@ F-statistic: 41.84 on 8 and 590 DF,  p-value: < 2.2e-16
 
 At the 5% level, **Outcome**, **Age**, **Insulin** and **Skin Thickness** are deemed significant. Other features are deemed insignificant at the 5% level.
 
-Taking the findings of both the correlation plots and multiple linear regression into account, Outcome, Age, Insulin and Skin Thickness are selected as the relevant features for the analysis.
+It is not deemed necessary to run a formal test for multicollinearity in this instance, as the correlation plots indicate features that are highly correlated with each other.
+
+However, heteroscedasticity (uneven variance across standard errors) could be present, e.g. due to differing age across patients. In order to test this, the Breusch-Pagan test is run - with a p-value below 0.05 indicating the presence of heteroscedasticity.
+
+```
+> bptest(fit)
+
+	studentized Breusch-Pagan test
+
+data:  fit
+BP = 36.585, df = 8, p-value = 1.372e-05
+```
+
+As heteroscedasticity is indicated to be present, a robust regression is run - specifically using Huber weights. The purpose of this is to place less value on the outliers present in the dataset.
+
+```
+> # Huber Weights (Robust Regression)
+> summary(rr.huber <- rlm(Glucose ~ Pregnancies + Outcome + Age + DiabetesPedigreeFunction + BMI + Insulin + SkinThickness + BloodPressure, data=diabetes1))
+
+Call: rlm(formula = Glucose ~ Pregnancies + Outcome + Age + DiabetesPedigreeFunction + 
+    BMI + Insulin + SkinThickness + BloodPressure, data = diabetes1)
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-68.627 -16.842  -1.543  15.576  83.793 
+
+Coefficients:
+                         Value   Std. Error t value
+(Intercept)              78.3319  6.2990    12.4357
+Pregnancies              -0.4675  0.3600    -1.2984
+Outcome                  25.0513  2.3599    10.6152
+Age                       0.5448  0.1050     5.1881
+DiabetesPedigreeFunction -0.5482  3.1657    -0.1732
+BMI                       0.3297  0.1654     1.9935
+Insulin                   0.0925  0.0097     9.4912
+SkinThickness            -0.2530  0.0766    -3.3032
+BloodPressure             0.0673  0.0575     1.1706
+
+Residual standard error: 24.53 on 590 degrees of freedom
+```
+
+On **590** degrees of freedom, the two-tailed t critical value is as follows:
+
+```
+> abs(qt(0.05/2, 590))
+[1] 1.963993
+```
+
+When the t statistic > t critical value, the null hypothesis is rejected. In this regard, **Outcome**, **Age**, **BMI**, **Insulin**, and **Skin Thickness** have an absolute t-value greater than the critical value.
+
+Taking the findings of both the correlation plots and multiple linear regression into account, **Outcome**, **Age**, **Insulin** and **Skin Thickness** are selected as the relevant features for the analysis.
 
 ## Data Preparation
 
