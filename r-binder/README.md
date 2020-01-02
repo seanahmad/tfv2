@@ -323,7 +323,7 @@ attach(df2)
 df2
 ```
 
-![predicted-vs-actual-test](predicted-vs-actual-test.png)
+![predicted-vs-actual-test](predicted-vs-actual-test.PNG)
 
 Now, the mean percentage error is calculated using the test values:
 
