@@ -131,7 +131,7 @@ Non-trainable params: 0
 ________________________________________________________________________________
 ```
 
-The model is now trained over 150 epochs, and evaluated based on its loss and mean absolute error. Given that the dependent variable is interval, the mean squared error is used to determine the deviation between the predictions and actual values.
+The model is now trained over 60 epochs, and evaluated based on its loss and mean absolute error. Given that the dependent variable is interval, the mean squared error is used to determine the deviation between the predictions and actual values.
 
 ```
 model %>% compile(
@@ -142,7 +142,7 @@ model %>% compile(
 
 history <- model %>% fit(
   X_train, y_train, 
-  epochs = 150, batch_size = 50, 
+  epochs = 60, batch_size = 50, 
   validation_split = 0.2
 )
 ```
@@ -184,6 +184,10 @@ Trainable params: 173
 Non-trainable params: 0
 ________________________________________________________________________________
 ```
+
+Here is a plot of the loss and mean absolute error:
+
+![plot](plot.png)
 
 The model yields a loss of just under 3% and a mean absolute error of just under 14%.
 
