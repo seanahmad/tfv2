@@ -15,3 +15,8 @@ In this regard, this article provides an overview of:
 - Methods to validate and test model predictions
 - Advantages and disadvantages of running Keras using the R interface
 
+## Data Preparation
+
+The pima-indians-diabetes dataset is partitioned into three separate datasets for this example.
+
+Training and validation: pima-indians-diabetes1.csv. 80% of the original dataset is split from the full dataset. In turn, 70% of this dataset is used for training the model, and the remaining 30% is used for validating the predictions.
