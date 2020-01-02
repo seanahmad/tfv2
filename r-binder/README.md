@@ -102,6 +102,8 @@ F-statistic: 41.84 on 8 and 590 DF,  p-value: < 2.2e-16
 
 At the 5% level, **Outcome**, **Age**, **Insulin** and **Skin Thickness** are deemed significant. Other features are deemed insignificant at the 5% level.
 
+## Heteroscedasticity test using Breusch-Pagan
+
 It is not deemed necessary to run a formal test for multicollinearity in this instance, as the correlation plots indicate features that are highly correlated with each other.
 
 However, heteroscedasticity (uneven variance across standard errors) could be present, e.g. due to differing age across patients. In order to test this, the Breusch-Pagan test is run - with a p-value below 0.05 indicating the presence of heteroscedasticity.
