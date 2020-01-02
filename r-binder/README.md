@@ -201,3 +201,54 @@ The MPE is calculated as being just under 4%:
 3.6604357976026
 ```
 
+## Predictions and Test Data
+
+Even though the model has shown strong predictive power, our work is not done yet.
+
+While the model has performed well on the validation data, we now need to assess whether the model will also perform well on completely unseen data.
+
+The feature variables are loaded from pima-indians-diabetes2, and max0min normalization is invoked once again:
+
+```
+normalize <- function(x) {
+  return ((x - min(x)) / (max(x) - min(x)))
+}
+
+maxmindf2 <- as.data.frame(lapply(df2, normalize))
+attach(maxmindf2)
+```
+
+Using the predict function in R, predictions are generated for the Glucose variable:
+
+```
+pred_test <- data.frame(y = predict(model, as.matrix(maxmindf2)))
+predicted_test = pred_test$y * abs(diff(range(diabetes1$Glucose))) + min(diabetes1$Glucose)
+predicted_test
+```
+
+The predicted values are then compared to the actual values in pima-indians-diabetes3:
+
+```
+actual_test = diabetes3$Glucose
+df2<-data.frame(predicted_test,actual_test)
+attach(df2)
+df2
+```
+
+(predicted-vs-actual-test)
+
+Now, the mean percentage error is calculated using the test values:
+
+```
+mpe2=((predicted_test-actual_test)/actual_test)
+mean(mpe2)*100
+```
+
+A mean percentage error of just over 5% is calculated:
+
+```
+5.31887562145206
+```
+
+## Conclusion
+
