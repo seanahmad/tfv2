@@ -48,13 +48,11 @@ Here is the first correlation plot:
 
 ![corrplot](corrplot.png)
 
-We can see that...
+We can see that the **Insulin** and **Outcome** variables are particularly correlated with the **Glucose** variable, while there is also correlation between **Age** and **Pregnancies** and **Insulin** and **Skin Thickness**.
 
 However, we can go into more detail and obtain specific correlation coefficients for each feature:
 
 ![corrplot-with-stats](corrplot-with-stats.png)
-
-X, Y, and Z, are indicated as being relevant features for blood glucose levels.
 
 ### Multiple Linear Regression
 
@@ -65,11 +63,37 @@ The purpose of a multiple linear regression is to:
 
 Here are the results for the linear regression:
 
-(results)
+```
+Call:
+lm(formula = Glucose ~ Pregnancies + Outcome + Age + DiabetesPedigreeFunction + 
+    BMI + Insulin + SkinThickness + BloodPressure, data = diabetes1)
 
-At the 5% level, X, Y, and Z are deemed significant. Other features are deemed insignificant.
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-68.709 -18.148  -2.212  15.176  80.950 
 
-Taking the findings of both the correlation plots and multiple linear regression into account, X, Y, and Z are selected as the relevant features for the analysis.
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)              78.401064   6.363612  12.320  < 2e-16 ***
+Pregnancies              -0.481865   0.363730  -1.325  0.18575    
+Outcome                  25.590805   2.384153  10.734  < 2e-16 ***
+Age                       0.527262   0.106097   4.970  8.8e-07 ***
+DiabetesPedigreeFunction  0.052534   3.198192   0.016  0.98690    
+BMI                       0.318452   0.167106   1.906  0.05718 .  
+Insulin                   0.082208   0.009843   8.352  4.8e-16 ***
+SkinThickness            -0.202236   0.077372  -2.614  0.00918 ** 
+BloodPressure             0.083865   0.058081   1.444  0.14929    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 24.94 on 590 degrees of freedom
+Multiple R-squared:  0.362,	Adjusted R-squared:  0.3533 
+F-statistic: 41.84 on 8 and 590 DF,  p-value: < 2.2e-16
+```
+
+At the 5% level, **Outcome**, **Age**, **Insulin** and **Skin Thickness** are deemed significant. Other features are deemed insignificant at the 5% level.
+
+Taking the findings of both the correlation plots and multiple linear regression into account, Outcome, Age, Insulin and Skin Thickness are selected as the relevant features for the analysis.
 
 ## Data Preparation
 
