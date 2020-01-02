@@ -46,11 +46,20 @@ However, features that are highly correlated with each other would indicate that
 
 Here is the first correlation plot:
 
+```
+M <- cor(diabetes1)
+corrplot(M, method = "circle")
+```
+
 ![corrplot](corrplot.png)
 
 We can see that the **Insulin** and **Outcome** variables are particularly correlated with the **Glucose** variable, while there is also correlation between **Age** and **Pregnancies** and **Insulin** and **Skin Thickness**.
 
 However, we can go into more detail and obtain specific correlation coefficients for each feature:
+
+```
+corrplot(M, method = "number")
+```
 
 ![corrplot-with-stats](corrplot-with-stats.png)
 
