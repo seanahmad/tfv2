@@ -6,7 +6,7 @@ However, did you realise that the Keras API can also be run in R?
 
 In this example, *Keras* is used to generate a neural network - with the aim of solving a regression problem in R.
 
-Specifically, the pima-indians-diabetes dataset is used in order to predict blood glucose levels for patients using the relevant features.
+Specifically, the Pima Indians Diabetes dataset is used in order to predict blood glucose levels for patients using the relevant features.
 
 In this regard, this article provides an overview of:
 
@@ -16,7 +16,7 @@ In this regard, this article provides an overview of:
 
 ## Datasets
 
-The pima-indians-diabetes dataset is partitioned into three separate datasets for this example.
+The Pima Indians Diabetes dataset is partitioned into three separate datasets for this example.
 
 **Training and validation:** pima-indians-diabetes1.csv. 80% of the original dataset is split from the full dataset. In turn, 70% of this dataset is used for training the model, and the remaining 30% is used for validating the predictions.
 
