@@ -46,13 +46,13 @@ However, features that are highly correlated with each other would indicate that
 
 Here is the first correlation plot:
 
-(correlation plot)
+![corrplot](corrplot.png)
 
 We can see that...
 
 However, we can go into more detail and obtain specific correlation coefficients for each feature:
 
-(correlation plot 2)
+![corrplot-with-stats](corrplot-with-stats.png)
 
 X, Y, and Z, are indicated as being relevant features for blood glucose levels.
 
