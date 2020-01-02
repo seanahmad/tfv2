@@ -98,3 +98,106 @@ X_val <- maxmindf[ind==2, 1:4]
 y_train <- maxmindf[ind==1, 5]
 y_val <- maxmindf[ind==2, 5]
 ```
+
+## Sequential Model
+
+Now, the Sequential model is defined. The four input features (Outcome, Age, Insulin, Skin Thickness) are included in the input layer. One hidden layer is defined, and a linear output layer is defined.
+
+```
+model <- keras_model_sequential() 
+model %>% 
+  layer_dense(units = 12, activation = 'relu', kernel_initializer='RandomNormal', input_shape = c(4)) %>% 
+  layer_dense(units = 8, activation = 'relu') %>%
+  layer_dense(units = 1, activation = 'linear')
+
+summary(model)
+```
+
+Here is the output:
+
+```
+Model: "sequential"
+________________________________________________________________________________
+Layer (type)                        Output Shape                    Param #     
+================================================================================
+dense (Dense)                       (None, 12)                      60          
+________________________________________________________________________________
+dense_1 (Dense)                     (None, 8)                       104         
+________________________________________________________________________________
+dense_2 (Dense)                     (None, 1)                       9           
+================================================================================
+Total params: 173
+Trainable params: 173
+Non-trainable params: 0
+________________________________________________________________________________
+```
+
+The model is now trained over 150 epochs, and evaluated based on its loss and mean absolute error. Given that the dependent variable is interval, the mean squared error is used to determine the deviation between the predictions and actual values.
+
+```
+model %>% compile(
+  loss = 'mean_squared_error',
+  optimizer = 'adam',
+  metrics = c('mae')
+)
+
+history <- model %>% fit(
+  X_train, y_train, 
+  epochs = 150, batch_size = 50, 
+  validation_split = 0.2
+)
+```
+
+### Model Evaluation
+
+The predicted and actual values are scaled back to their original formats:
+
+```
+model %>% evaluate(X_val, y_val)
+model
+pred <- data.frame(y = predict(model, as.matrix(X_val)))
+predicted=pred$y * abs(diff(range(df$Glucose))) + min(df$Glucose)
+actual=y_val * abs(diff(range(df$Glucose))) + min(df$Glucose)
+df<-data.frame(predicted,actual)
+attach(df)
+```
+
+Here is the output:
+
+```
+$loss
+0.0281546051063907
+$mae
+0.139013439416885
+Model
+Model: "sequential"
+________________________________________________________________________________
+Layer (type)                        Output Shape                    Param #     
+================================================================================
+dense (Dense)                       (None, 12)                      60          
+________________________________________________________________________________
+dense_1 (Dense)                     (None, 8)                       104         
+________________________________________________________________________________
+dense_2 (Dense)                     (None, 1)                       9           
+================================================================================
+Total params: 173
+Trainable params: 173
+Non-trainable params: 0
+________________________________________________________________________________
+```
+
+The model yields a loss of just under 3% and a mean absolute error of just under 14%.
+
+The mean percentage error is also calculated:
+
+```
+mpe=((predicted-actual)/actual)
+mean(mpe)*100
+```
+
+The MPE is calculated as being just under 4%:
+
+```
+3.6604357976026
+```
+
