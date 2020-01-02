@@ -15,7 +15,7 @@ In this regard, this article provides an overview of:
 - Methods to validate and test model predictions
 - Advantages and disadvantages of running Keras using the R interface
 
-## Data Preparation
+## Datasets
 
 The pima-indians-diabetes dataset is partitioned into three separate datasets for this example.
 
@@ -72,4 +72,29 @@ At the 5% level, X, Y, and Z are deemed significant. Other features are deemed i
 
 Taking the findings of both the correlation plots and multiple linear regression into account, X, Y, and Z are selected as the relevant features for the analysis.
 
+## Data Preparation
 
+Now that the relevant features have been selected, the neural network can be constructed. Before doing so:
+
+1. Max-Min Normalization is used to scale each variable between 0 and 1. This is to ensure a common scale among the variables so that the neural network can interpret them properly.
+
+```
+normalize <- function(x) {
+  return ((x - min(x)) / (max(x) - min(x)))
+}
+
+maxmindf <- as.data.frame(lapply(df, normalize))
+attach(maxmindf)
+maxmindf<-as.matrix(maxmindf)
+```
+
+2. The train-validation set is split 70/30.
+
+```
+ind <- sample(2, nrow(maxmindf), replace=TRUE, prob = c(0.7,0.3))
+
+X_train <- maxmindf[ind==1, 1:4]
+X_val <- maxmindf[ind==2, 1:4]
+y_train <- maxmindf[ind==1, 5]
+y_val <- maxmindf[ind==2, 5]
+```
