@@ -215,7 +215,7 @@ Non-trainable params: 0
 ________________________________________________________________________________
 ```
 
-The model is now trained over 60 epochs, and evaluated based on its loss and mean absolute error. Given that the dependent variable is interval, the mean squared error is used to determine the deviation between the predictions and actual values.
+The model is now trained over 30 epochs, and evaluated based on its loss and mean absolute error. Given that the dependent variable is interval, the mean squared error is used to determine the deviation between the predictions and actual values.
 
 ```
 model %>% compile(
