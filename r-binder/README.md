@@ -338,6 +338,8 @@ A mean percentage error of just under 7% is calculated:
 6.78097446159889
 ```
 
+It is observed that while the mean percentage error is slightly higher than that calculated using the training and validation data, the model still performs well in predicting blood glucose levels across unseen observations on the test set.
+
 ## Conclusion
 
 In this example, we have seen:
