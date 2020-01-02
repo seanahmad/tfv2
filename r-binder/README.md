@@ -214,7 +214,7 @@ Here is a plot of the loss and mean absolute error:
 
 ![loss](loss.png)
 
-The model yields a loss of just under 3% and a mean absolute error of just under 14%.
+The model yields a loss of just above 2% and a mean absolute error of just above 12%.
 
 The mean percentage error is also calculated:
 
