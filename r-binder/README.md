@@ -59,4 +59,17 @@ X, Y, and Z, are indicated as being relevant features for blood glucose levels.
 
 ### Multiple Linear Regression
 
-The purpose of a multiple linear regression is to 
+The purpose of a multiple linear regression is to:
+
+1. Determine the size and nature of the coefficient for each feature in explaining the dependent variable.
+2. Determine the signficance or insignificance of each feature.
+
+Here are the results for the linear regression:
+
+(results)
+
+At the 5% level, X, Y, and Z are deemed significant. Other features are deemed insignificant.
+
+Taking the findings of both the correlation plots and multiple linear regression into account, X, Y, and Z are selected as the relevant features for the analysis.
+
+
