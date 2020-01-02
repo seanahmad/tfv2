@@ -142,7 +142,7 @@ model %>% compile(
 
 history <- model %>% fit(
   X_train, y_train, 
-  epochs = 60, batch_size = 50, 
+  epochs = 30, batch_size = 50, 
   validation_split = 0.2
 )
 ```
@@ -187,7 +187,7 @@ ________________________________________________________________________________
 
 Here is a plot of the loss and mean absolute error:
 
-![plot](plot.png)
+![loss](loss.png)
 
 The model yields a loss of just under 3% and a mean absolute error of just under 14%.
 
