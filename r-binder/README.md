@@ -32,5 +32,31 @@ In our example, there are eight features - some will be more important than othe
 The two feature selection methods used here are:
 
 - Correlation plots
-- Multiple linear regression
+- Multiple Linear Regression
 
+### Correlation plots
+
+Correlation plots allow us to visually determine:
+
+1. Features that are highly correlated with the dependent variable
+2. Features that are highly correlated with each other
+
+If certain features are highly correlated with blood glucose levels, then this is an indication that these features are important in predicting the same. Features with low correlation are indicated to be insignificant.
+
+However, features that are highly correlated with each other would indicate that some of these features are redundant (since they are in effect attempting to explain the same thing).
+
+Here is the first correlation plot:
+
+(correlation plot)
+
+We can see that...
+
+However, we can go into more detail and obtain specific correlation coefficients for each feature:
+
+(correlation plot 2)
+
+X, Y, and Z, are indicated as being relevant features for blood glucose levels.
+
+### Multiple Linear Regression
+
+The purpose of a multiple linear regression is to 
