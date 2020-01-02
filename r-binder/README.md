@@ -165,9 +165,10 @@ Here is the output:
 
 ```
 $loss
-0.0281546051063907
+0.0239604329260496
 $mae
-0.139013439416885
+0.125055283308029
+
 Model
 Model: "sequential"
 ________________________________________________________________________________
@@ -201,7 +202,7 @@ mean(mpe)*100
 The MPE is calculated as being just under 4%:
 
 ```
-3.6604357976026
+3.49494900069498
 ```
 
 ## Predictions and Test Data
@@ -247,11 +248,18 @@ mpe2=((predicted_test-actual_test)/actual_test)
 mean(mpe2)*100
 ```
 
-A mean percentage error of just over 5% is calculated:
+A mean percentage error of just under 7% is calculated:
 
 ```
-5.31887562145206
+6.78097446159889
 ```
 
 ## Conclusion
 
+In this example, we have seen:
+
+- How to implement feature selection methods in R
+- Construct a neural network to analyse regression data using the Keras API
+- Gauge prediction accuracy using test data
+
+Many thanks for your time!
