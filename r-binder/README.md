@@ -284,7 +284,7 @@ library(MLmetrics)
 MAPE(predicted, actual)
 ```
 
-The MAPE for the validation set comes in at 18%. Increasing the number of hidden layers in the model did not improve MAPE and it was therefore decided to keep one hidden layer in the model configuration.
+The MAPE for the validation set comes in at **18%**. Increasing the number of hidden layers in the model did not improve MAPE and it was therefore decided to keep one hidden layer in the model configuration.
 
 ## Predictions and Test Data
 
