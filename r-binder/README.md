@@ -188,7 +188,11 @@ Now, the Sequential model is defined. The four input features (Outcome, Age, Ins
 
 As explained in this article by [Farhad Malik](https://medium.com/fintechexplained/what-are-hidden-layers-4f54f7328263), the number of neurons in each layer is configured as follows:
 
-- **Input layer:** ```Number of features in the training set + 1```. In this case, as there were 8 features in the training set to begin with, **9** input neurons are defined accordingly.
+- **Input layer:** The number of neurons in the input layer is calculated as follows:
+
+```Number of features in the training set + 1```
+
+In this case, as there were 8 features in the training set to begin with, **9** input neurons are defined accordingly.
 
 - **Hidden layer:** One hidden layer is defined, as a single layer is suitable when working with most datasets. The number of neurons in the hidden layer is determined as follows:
 
