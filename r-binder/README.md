@@ -184,7 +184,21 @@ y_val <- maxmindf[ind==2, 5]
 
 ## Sequential Model
 
-Now, the Sequential model is defined. The four input features (Outcome, Age, Insulin, Skin Thickness) are included in the input layer. One hidden layer is defined, and a linear output layer is defined.
+Now, the Sequential model is defined. The four input features (Outcome, Age, Insulin, Skin Thickness) are included in the input layer with 9 neurons defined in the layer. One hidden layer with 60 neurons is defined, and a linear output layer with 1 neuron is defined.
+
+As explained in this article by [Farhad Malik](https://medium.com/fintechexplained/what-are-hidden-layers-4f54f7328263), the number of neurons in each layer is configured as follows:
+
+- **Input layer:** ```Number of features in the training set + 1```. In this case, as there were 8 features in the training set to begin with, **9** input neurons are defined accordingly.
+
+- **Hidden layer:** One hidden layer is defined, as a single layer is suitable when working with most datasets. The number of neurons in the hidden layer is determined as follows:
+
+```
+Training Data Samples/Factor * (Input Neurons + Output Neurons)
+```
+
+A factor of 1 is set in this case, the purpose of the factor being to prevent overfitting. A factor can take a value between 1 and 10. With 9 neurons in the input layer, 1 neuron in the output layer and 599 observations in the training set, the hidden layer is assigned 60 neurons.
+
+- **Output layer:** As this is the result layer, the output layer takes a value of 1 by default.
 
 ```
 model <- keras_model_sequential() 
@@ -249,23 +263,23 @@ Here is the output:
 
 ```
 $loss
-0.0239604329260496
+    0.0266957393988254
 $mae
-0.125055283308029
+    0.132186755537987
 
 Model
 Model: "sequential"
 ________________________________________________________________________________
 Layer (type)                        Output Shape                    Param #     
 ================================================================================
-dense (Dense)                       (None, 12)                      60          
+dense (Dense)                       (None, 9)                       45          
 ________________________________________________________________________________
-dense_1 (Dense)                     (None, 8)                       104         
+dense_1 (Dense)                     (None, 60)                      600         
 ________________________________________________________________________________
-dense_2 (Dense)                     (None, 1)                       9           
+dense_2 (Dense)                     (None, 1)                       61          
 ================================================================================
-Total params: 173
-Trainable params: 173
+Total params: 706
+Trainable params: 706
 Non-trainable params: 0
 ________________________________________________________________________________
 ```
@@ -322,17 +336,16 @@ df2
 
 ![predicted-vs-actual-test](predicted-vs-actual-test.PNG)
 
-Now, the mean percentage error is calculated using the test values:
+Now, the mean absolute percentage error is calculated using the test values:
 
 ```
-mpe2=((predicted_test-actual_test)/actual_test)
-mean(mpe2)*100
+MAPE(predicted_test, actual_test)
 ```
 
-A mean percentage error of just under 7% is calculated:
+A mean percentage error of 17% is calculated:
 
 ```
-6.78097446159889
+0.177895157636775
 ```
 
 It is observed that while the mean percentage error is slightly higher than that calculated using the training and validation data, the model still performs well in predicting blood glucose levels across unseen observations on the test set.
