@@ -189,8 +189,8 @@ Now, the Sequential model is defined. The four input features (Outcome, Age, Ins
 ```
 model <- keras_model_sequential() 
 model %>% 
-  layer_dense(units = 12, activation = 'relu', kernel_initializer='RandomNormal', input_shape = c(4)) %>% 
-  layer_dense(units = 8, activation = 'relu') %>%
+  layer_dense(units = 9, activation = 'relu', kernel_initializer='RandomNormal', input_shape = c(4)) %>% 
+  layer_dense(units = 60, activation = 'relu') %>%
   layer_dense(units = 1, activation = 'linear')
 
 summary(model)
@@ -203,14 +203,14 @@ Model: "sequential"
 ________________________________________________________________________________
 Layer (type)                        Output Shape                    Param #     
 ================================================================================
-dense (Dense)                       (None, 12)                      60          
+dense (Dense)                       (None, 9)                       45          
 ________________________________________________________________________________
-dense_1 (Dense)                     (None, 8)                       104         
+dense_1 (Dense)                     (None, 60)                      600         
 ________________________________________________________________________________
-dense_2 (Dense)                     (None, 1)                       9           
+dense_2 (Dense)                     (None, 1)                       61          
 ================================================================================
-Total params: 173
-Trainable params: 173
+Total params: 706
+Trainable params: 706
 Non-trainable params: 0
 ________________________________________________________________________________
 ```
@@ -274,20 +274,17 @@ Here is a plot of the loss and mean absolute error:
 
 ![loss](loss.png)
 
-The model yields a loss of just above 2% and a mean absolute error of just above 12%.
+The model yields a loss of just above 2% and a mean absolute error of just above 13%.
 
-The mean percentage error is also calculated:
-
-```
-mpe=((predicted-actual)/actual)
-mean(mpe)*100
-```
-
-The MPE is calculated as being just under 4%:
+The *MLmetrics* library can also be used to calculate the MAPE (mean absolute percentage error).
 
 ```
-3.49494900069498
+install.packages("MLmetrics")
+library(MLmetrics)
+MAPE(predicted, actual)
 ```
+
+The MAPE for the validation set comes in at 18%. Increasing the number of hidden layers in the model did not improve MAPE and it was therefore decided to keep one hidden layer in the model configuration.
 
 ## Predictions and Test Data
 
